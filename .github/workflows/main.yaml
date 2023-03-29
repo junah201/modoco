@@ -33,7 +33,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-    - name: Docker run
+    - name: Prev Container Stop
       run: |
-        docker stop go_cicd && docker rm go_cicd && docker rmi hyper2012/app:latest
-        docker run -d -p 8080:8080 --name go_cicd --restart always hyper2012/app:latest
+        docker stop main-cicd && docker rm main-cicd && docker rmi hyper2012/app:latest
+
+    - name: Container Run
+      run: |
+        docker run -d --name main-cicd \
+        -e TOKEN=${{ secrets.TOKEN }} \
+        -e AUTO_VOICE_CHANNEL_GENERATOR_CHANNEL_ID=${{ secrets.AUTO_VOICE_CHANNEL_GENERATOR_CHANNEL_ID }} \
+        --restart always hyper2012/app:latest
