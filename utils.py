@@ -29,11 +29,11 @@ async def get_role_by_guild_id(bot: discord.Client, guild_id: int, role_id: int)
 
 async def get_channel_by_id(bot: discord.Client, channel_id: int) -> Optional[discord.abc.GuildChannel]:
     # Get Cached Channel
-    channel = bot.get_channel(channel_id)
+    channel: Optional[discord.abc.GuildChannel] = bot.get_channel(channel_id)
 
     # If the channel is not cached, request directly to the Discord server
     if channel == None:
-        channel = discord.utils.get(await bot.fetch_channels(), id=channel_id)
+        channel: Optional[discord.abc.GuildChannel] = await bot.fetch_channel(channel_id)
 
     return channel
 
