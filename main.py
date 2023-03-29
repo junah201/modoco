@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from common import const
+import logging
 
 
 class Bot(commands.Bot):
@@ -14,6 +15,7 @@ class Bot(commands.Bot):
         self.initial_extension = [
             "Cogs.create_voice_channel",
             "Cogs.logging_voice_state_update",
+            "Cogs.errors",
         ]
 
     async def setup_hook(self):
@@ -30,5 +32,7 @@ class Bot(commands.Bot):
 
 
 if __name__ == '__main__':
+    log_handler = logging.FileHandler(
+        filename='discord.log', encoding='utf-8', mode='w')
     bot = Bot()
-    bot.run(const.TOKEN)
+    bot.run(const.TOKEN, log_handler=log_handler)

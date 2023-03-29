@@ -42,4 +42,5 @@ jobs:
         docker run -d --name main-cicd \
         -e TOKEN=${{ secrets.TOKEN }} \
         -e AUTO_VOICE_CHANNEL_GENERATOR_CHANNEL_ID=${{ secrets.AUTO_VOICE_CHANNEL_GENERATOR_CHANNEL_ID }} \
+          -e ERROR_LOGGING_CHANNEL_ID=${{ secrets.ERROR_LOGGING_CHANNEL_ID }} \
         --restart always hyper2012/app:latest
