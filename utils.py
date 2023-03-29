@@ -1,4 +1,5 @@
 import discord
+from typing import Optional
 
 
 async def get_role_by_guild(guild: discord.Guild, role_id: int):
@@ -26,7 +27,7 @@ async def get_role_by_guild_id(bot: discord.Client, guild_id: int, role_id: int)
     return role
 
 
-async def get_channel_by_id(bot: discord.Client, channel_id: int):
+async def get_channel_by_id(bot: discord.Client, channel_id: int) -> Optional[discord.abc.GuildChannel]:
     # Get Cached Channel
     channel = bot.get_channel(channel_id)
 
