@@ -40,5 +40,6 @@ jobs:
       - name: Container Run
         run: |
           docker run -d --name main-cicd \
+          -v /etc/localtime:/etc/localtime:ro -e TZ=Asia/Seoul \
           -e TOKEN=${{ secrets.TOKEN }} \
           --restart always hyper2012/app:latest
