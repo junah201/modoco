@@ -6,7 +6,7 @@ import utils
 from typing import Optional
 
 
-class loggingVoiceStateUpdate(commands.Cog):
+class VoiceChannelLogHandler(commands.Cog):
     def __init__(self, bot: discord.Client):
         self.bot = bot
         self.auto_generator_channel: Optional[discord.VoiceChannel] = None
@@ -59,4 +59,4 @@ class loggingVoiceStateUpdate(commands.Cog):
 
 
 async def setup(bot):
-    await bot.add_cog(loggingVoiceStateUpdate(bot))
+    await bot.add_cog(VoiceChannelLogHandler(bot))

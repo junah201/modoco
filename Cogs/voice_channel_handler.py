@@ -6,7 +6,7 @@ import asyncio
 from typing import Optional
 
 
-class createVoiceChannl(commands.Cog):
+class VoiceChannelHandler(commands.Cog):
     def __init__(self, bot: discord.Client):
         self.bot = bot
         self.auto_generator_channel: Optional[discord.VoiceChannel] = None
@@ -45,4 +45,4 @@ class createVoiceChannl(commands.Cog):
 
 
 async def setup(bot):
-    await bot.add_cog(createVoiceChannl(bot))
+    await bot.add_cog(VoiceChannelHandler(bot))

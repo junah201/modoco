@@ -8,7 +8,7 @@ import utils
 from common import config
 
 
-class Errors(commands.Cog, name="errors"):
+class ErrorHandler(commands.Cog, name="errors"):
     """Errors handler."""
 
     def __init__(self, bot: discord.Client) -> None:
@@ -184,4 +184,4 @@ class Errors(commands.Cog, name="errors"):
 
 
 async def setup(bot: discord.Client):
-    await bot.add_cog(Errors(bot))
+    await bot.add_cog(ErrorHandler(bot))

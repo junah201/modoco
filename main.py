@@ -13,9 +13,9 @@ class Bot(commands.Bot):
         )
 
         self.initial_extension = [
-            "Cogs.create_voice_channel",
-            "Cogs.logging_voice_state_update",
-            "Cogs.errors",
+            "Cogs.error_handler",
+            "Cogs.voice_channel_handler",
+            "Cogs.voice_channel_log_handler",
         ]
 
     async def setup_hook(self):
