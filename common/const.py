@@ -1,5 +1,5 @@
 import os
 
 
-PREFIX = os.environ.get("PREFIX", "!")
+PREFIX = "!"
 TOKEN = os.environ.get("TOKEN")
