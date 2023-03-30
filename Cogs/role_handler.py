@@ -39,22 +39,6 @@ class RoleHandler(commands.Cog):
     async def on_ready(self):
         self.role_assignment_channel: discord.TextChannel = await utils.get_channel_by_id(self.bot, config.ROLE_ASSIGNMENT_CHANNEL_ID)
 
-        print(self.role_assignment_channel.guild)
-
-        role1 = await utils.get_role_by_guild(self.role_assignment_channel.guild, 1090985605493702767)
-        print(role1)
-        role2 = await utils.get_role_by_guild(self.role_assignment_channel.guild, 1090985744031563816)
-        print(role2)
-
-        async for user in self.role_assignment_channel.guild.fetch_members(limit=None):
-            if user.bot:
-                print(f"bot: {user}")
-                continue
-
-            print(user)
-            # add default role'
-            await user.add_roles(role1, role2)
-
         # init channel
         await self.role_assignment_channel.purge()
 

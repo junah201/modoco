@@ -17,6 +17,7 @@ class Bot(commands.Bot):
             "Cogs.voice_channel_handler",
             "Cogs.voice_channel_log_handler",
             "Cogs.role_handler",
+            "Cogs.channel_entry_handler",
         ]
 
     async def setup_hook(self):
