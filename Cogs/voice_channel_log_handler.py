@@ -3,7 +3,7 @@ from discord.ext import commands
 import datetime
 from common import config
 import utils
-from typing import Optional
+from typing import Optional, Union
 
 
 class VoiceChannelLogHandler(commands.Cog):
@@ -18,7 +18,7 @@ class VoiceChannelLogHandler(commands.Cog):
     @commands.Cog.listener()
     async def on_voice_state_update(
         self,
-        member: discord.Member | discord.User,
+        member:  Union[discord.Member, discord.User],
         before: discord.VoiceState,
         after: discord.VoiceState,
     ):
