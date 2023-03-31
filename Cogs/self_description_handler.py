@@ -35,10 +35,21 @@ class SelfDescriptionHandler(commands.Cog):
         async def on_submit(self, interaction: discord.Interaction) -> None:
             introduction_embed = discord.Embed(
                 title="새로운 유저가 서버에 참여했어요!",
-                description=f"{interaction.user.mention} ({interaction.user})\n한줄 자기소개: `{self.short_description.value}`\n깃허브 주소: {self.github_url.value or '없음'}",
                 color=discord.Color.blue(),
                 timestamp=datetime.now(),
             )
+            introduction_embed.add_field(
+                name="한줄 자기소개",
+                value=self.short_description.value,
+                inline=False,
+            )
+            if self.github_url.value:
+                introduction_embed.add_field(
+                    name="깃허브 주소",
+                    value=self.github_url.value,
+                    inline=False,
+                )
+
             introduction_embed.set_author(
                 name=interaction.user.name,
                 icon_url=interaction.user.display_avatar.url,
@@ -47,7 +58,7 @@ class SelfDescriptionHandler(commands.Cog):
             default_role = await utils.get_role_by_guild(interaction.guild, config.DEFULT_ROLE_ID)
             await interaction.user.add_roles(default_role)
 
-            await self.main_chat_channel.send(embed=introduction_embed)
+            await self.main_chat_channel.send(f"{interaction.user.mention}", embed=introduction_embed)
             await interaction.response.send_message(f"{interaction.user.mention}자기소개가 완료되었습니다.", ephemeral=True)
 
     @commands.Cog.listener()
