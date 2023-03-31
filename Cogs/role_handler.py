@@ -49,6 +49,11 @@ class RoleHandler(commands.Cog):
             color=discord.Color.blue()
         )
 
+        interest_embed.set_footer(
+            text="모도코",
+            icon_url=config.SERVER_ICON_URL
+        )
+
         interest_view = discord.ui.View(timeout=None)
 
         interests = [
@@ -81,6 +86,11 @@ class RoleHandler(commands.Cog):
             title="언어",
             description="언어에 따라 역할을 부여받을 수 있습니다.",
             color=discord.Color.blue()
+        )
+
+        language_embed.set_footer(
+            text="모도코",
+            icon_url=config.SERVER_ICON_URL
         )
 
         language_view = discord.ui.View(timeout=None)

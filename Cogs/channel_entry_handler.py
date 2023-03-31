@@ -24,6 +24,10 @@ class ChannelEntryHandler(commands.Cog):
             color=discord.Color.green(),
             timestamp=datetime.datetime.now(),
         )
+        welcome_log_embed.set_footer(
+            text="모도코",
+            icon_url=config.SERVER_ICON_URL
+        )
 
         await self.welcome_channel.send(
             embed=welcome_log_embed
@@ -35,6 +39,10 @@ class ChannelEntryHandler(commands.Cog):
             description=f"{member.mention} 님이 서버에서 나가셨습니다.",
             color=discord.Color.green(),
             timestamp=datetime.datetime.now(),
+        )
+        goodbye_log_embed.set_footer(
+            text="모도코",
+            icon_url=config.SERVER_ICON_URL
         )
 
         await self.goodbye_channel.send(

@@ -36,13 +36,17 @@ class VoiceChannelLogHandler(commands.Cog):
         # join voice channel
         if after.channel and after.channel.category_id == self.auto_generator_channel.category_id:
             join_log_embed = discord.Embed(
-                description=f"`{member.nick or member}`님이 `{before.channel}` 에 입장하셨습니다.",
+                title=f"맴버가 들어왔어요.",
                 color=discord.Color.green(),
                 timestamp=datetime.datetime.now(),
             )
             join_log_embed.set_author(
                 name=member.name,
-                icon_url=member.avatar_url,
+                icon_url=member.display_avatar.url,
+            )
+            join_log_embed.set_footer(
+                text="모도코",
+                icon_url=config.SERVER_ICON_URL
             )
             await after.channel.send(
                 embed=join_log_embed
@@ -51,13 +55,17 @@ class VoiceChannelLogHandler(commands.Cog):
         # leave voice channel
         if before.channel and before.channel.category_id == self.auto_generator_channel.category_id and before.channel != after.channel:
             leave_log_embed = discord.Embed(
-                description=f"`{member.nick or member}`님이 `{before.channel}` 에서 퇴장하셨습니다.",
+                title="맴버가 나갔어요.",
                 color=discord.Color.red(),
                 timestamp=datetime.datetime.now(),
             )
-            join_log_embed.set_author(
+            leave_log_embed.set_author(
                 name=member.name,
-                icon_url=member.avatar_url,
+                icon_url=member.display_avatar.url,
+            )
+            leave_log_embed.set_footer(
+                text="모도코",
+                icon_url=config.SERVER_ICON_URL
             )
             # Sending messages can fail if the channel is auto deleted
             try:
