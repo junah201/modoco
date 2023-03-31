@@ -67,10 +67,7 @@ class RoleHandler(commands.Cog):
             ("Android", "📱", discord.ButtonStyle.primary, config.ANDROID_ROLE_ID),
             ("Cloud", "☁️", discord.ButtonStyle.primary, config.CLOUD_ROLE_ID),
             ("Devops", "🛠", discord.ButtonStyle.primary, config.DEVOPS_ROLE_ID),
-            ("Infra", "🏗", discord.ButtonStyle.primary, config.INFRA_ROLE_ID),
             ("Security", "🔒", discord.ButtonStyle.primary, config.SECURITY_ROLE_ID),
-            ("System", "🖥", discord.ButtonStyle.primary, config.SYSTEM_ROLE_ID),
-            ("QA", "🧪", discord.ButtonStyle.primary, config.QA_ROLE_ID),
             ("Embedded", "🔌", discord.ButtonStyle.primary, config.EMBEDDED_ROLE_ID),
         ]
 
