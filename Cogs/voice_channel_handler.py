@@ -31,6 +31,7 @@ class VoiceChannelHandler(commands.Cog):
                 name=f"{member.nick or member} 님의 통화방",
                 category=self.auto_generator_channel.category,
                 overwrites={
+                    member.guild.default_role: discord.PermissionOverwrite(manage_channels=False, connect=False, mute_members=False, kick_members=False, deafen_members=False),
                     member: discord.PermissionOverwrite(manage_channels=True, connect=True, mute_members=False, kick_members=False, deafen_members=False),
                 }
             )
