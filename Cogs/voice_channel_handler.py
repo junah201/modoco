@@ -38,7 +38,7 @@ class VoiceChannelHandler(commands.Cog):
             return
 
         # delete voice channel
-        if before.channel and before.channel.category.id == self.auto_generator_channel.category.id and not before.channel.members and before.channel.id != self.auto_generator_channel.id:
+        if before.channel and before.channel.category_id == self.auto_generator_channel.category_id and not before.channel.members and before.channel.id != self.auto_generator_channel.id:
             await asyncio.sleep(3)
             await before.channel.delete()
             return
