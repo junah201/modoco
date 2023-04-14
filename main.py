@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from common import const
-import logging
 
 
 class Bot(commands.Bot):
@@ -35,7 +34,5 @@ class Bot(commands.Bot):
 
 
 if __name__ == '__main__':
-    log_handler = logging.FileHandler(
-        filename='discord.log', encoding='utf-8', mode='w')
     bot = Bot()
-    bot.run(const.TOKEN, log_handler=log_handler)
+    bot.run(const.TOKEN)
