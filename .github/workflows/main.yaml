@@ -1,45 +1,36 @@
-name: main-cicd
-
+name: Deploy to cloudtype
 on:
   push:
-    branches: ["main"]
-
+    branches:
+      - main
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build & Push
-        uses: docker/build-push-action@v3
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
         with:
-          context: .
-          push: true
-          tags: hyper2012/app:latest
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: hyper2012/modoco
+          stage: main
+          yaml: >
+            name: modoco
 
-  deploy:
-    needs: build
-    runs-on: [self-hosted, main-cicd]
-    steps:
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+            app: dockerfile
 
-      - name: Prev Container Stop
-        run: |
-          docker stop main-cicd && docker rm main-cicd && docker rmi hyper2012/app:latest
-
-      - name: Container Run
-        run: |
-          docker run -d --name main-cicd \
-          -v /etc/localtime:/etc/localtime:ro -e TZ=Asia/Seoul \
-          -e TOKEN=${{ secrets.TOKEN }} \
-          --restart always hyper2012/app:latest
+            options:
+              dockerfile: Dockerfile
+              env:
+                - name: TOKEN
+                  value: ${{ secrets.TOKEN }}
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
